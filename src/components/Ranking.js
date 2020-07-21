@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {View, Text, FlatList, Image, StyleSheet} from 'react-native'
+import {View,Image, StyleSheet} from 'react-native'
 
 
 import {ContainerList,TextColor, InfoPlayer} from '../style/style'
@@ -8,32 +8,25 @@ import {ContainerList,TextColor, InfoPlayer} from '../style/style'
 
 
 function Ranking ({ranking}) {
-    const Item = ({item}) => (
-        <ContainerList>
-            <View>
-                    <Image style={styles.img} source={item.img}/>
-            </View>
-            <InfoPlayer>
-                <TextColor>
-                    Nome: {item.nome}
-                    Rating: {item.rating}
-                </TextColor>
-            </InfoPlayer>
-        </ContainerList>
-     
-    )
-    const renderItem = ({item}) => {
-        return (
-            <Item item={item} />
-        )
-    }
-
+    ranking.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating))
 
     return (
         <View>
-          <FlatList data={ranking}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id} />
+          {ranking.map((element, i) => {
+              return (
+                <ContainerList key={i}>
+                <Image style={styles.img} source={element.img}/>
+                <InfoPlayer>
+                <TextColor>
+                    Nome: {element.nome}
+                </TextColor>
+                <TextColor>
+                    Rating: {element.rating}
+                </TextColor>
+            </InfoPlayer>
+                  </ContainerList>
+              )
+          })}
         </View>
       
     )
@@ -42,8 +35,12 @@ function Ranking ({ranking}) {
 
 const styles = StyleSheet.create({
     img: {
-        width: 66,
-        height: 66,
+        width: 96,
+        height: 96,
+        borderColor: "orange",
+        borderWidth: 1,
+        borderRadius: 10
+        
     }
 })
 

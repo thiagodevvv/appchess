@@ -8,4 +8,5 @@ Calcula Rating dos Jogadores e Timer para o Jogo
     
 
 ## Recursos Futuros
-    
+    - Calcular o rating após a partida [ ]
+    - Colocar em ordem de maior rating o ranking [ ]
