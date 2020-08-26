@@ -1,86 +1,47 @@
-import React from 'react'
-import {Text} from 'react-native'
+import React, {useState, useContext} from 'react'
 
+import {Context} from './src/Context/StateContext'
+
+import SelectPlayers from './src/components/SelectPlayers'
 import Ranking from './src/components/Ranking'
+import SelectTimer from './src/components/SelectTimer'
 
-import {Container, ButtonPlay, TextButtonPlay, ContainerButtonPlay} from './src/style/style'
+import {Container, ButtonPlay, TextButtonPlay, ContainerButtonPlay} from './src/components/style/style'
+import {LinearGradient,} from 'expo-linear-gradient'
 
-import playerone from './playerone.jpg'
-import player2 from './player2.png'
-import player3 from './player3.png'
+import {AppLoading} from 'expo'
+import { useFonts } from 'expo-font'
 
-const InitialData = [{
-    img: playerone,
-    nome: "Lemao",
-    rating: 2100,
-    vitorias: "10",
-    derrotas: "0",
-    adversarios: {
-      playertwo: {
-        nome: "PlayerTwo",
-        vitorias: "0",
-        derrotas: "5"
-      },
-      playerthree: {
-        nome: "PlayerThree",
-        vitorias: "0",
-        derrotas: "5"
-      }
-    }
-},
-{
-    img: player2,
-    nome: "Vitor",
-    rating: 2300,
-    vitorias: "10",
-    derrotas: "0",
-    adversarios: {
-      playertone: {
-        nome: "PlayerOne",
-        vitorias: "0",
-        derrotas: "5"
-      },
-      playerthree: {
-        nome: "PlayerThree",
-        vitorias: "0",
-        derrotas: "5"
-      }
-    }
-},
-{
-    img: player3,
-    nome: "Rick",
-    rating: 2500,
-    vitorias: "10",
-    derrotas: "0",
-    adversarios: {
-      playertone: {
-        nome: "PlayerOne",
-        vitorias: "0",
-        derrotas: "5"
-      },
-      playertwo: {
-        nome: "PlayerTwo",
-        vitorias: "0",
-        derrotas: "5"
-      }
-    }
-}]
+function Home ({navigation}) {
 
+    const {stateGlobal} = useContext(Context)
 
+    const [isVisible, setIsVisible] = useState(true)
+    let [fontsLoaded] = useFonts({
+    'FontCustom': require('./assets/fonts/russoone.ttf'),
+    })
 
-function Home () {
+    if(!fontsLoaded) {
+    return <AppLoading/>
+    
+  }
     return (
-        <Container>
-            <Ranking ranking={InitialData}/>
-            <ContainerButtonPlay>
-                <ButtonPlay>
-                    <TextButtonPlay style={{fontFamily: "sans-serif-condensed"}}>
-                        PLAY
-                    </TextButtonPlay>
-                </ButtonPlay>
-            </ContainerButtonPlay>
-        </Container>
+      <LinearGradient  colors={['#f00808', '#e8da0c']}
+      style={{position: 'absolute',height: "100%",width: "100%"}}> 
+          <Container >
+              <Ranking isVisible={isVisible} ranking={stateGlobal}/>
+              <ContainerButtonPlay isVisible={isVisible}>
+                  <ButtonPlay onPress={() => setIsVisible(false)}>
+                      <TextButtonPlay style={{fontFamily: "FontCustom"}}>
+                          PLAY
+                      </TextButtonPlay>
+                  </ButtonPlay>
+              </ContainerButtonPlay>
+              <SelectPlayers isVisible={isVisible} />
+              <SelectTimer navigation={navigation} isVisible={isVisible}/>
+          </Container>
+      </LinearGradient>
+  
     )
 }
 
