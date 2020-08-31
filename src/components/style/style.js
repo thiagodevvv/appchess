@@ -148,3 +148,46 @@ export const ButtonStartGame = styled.TouchableOpacity `
     margin-top: 30px;
     border-radius: 20px;
 `
+export const ButtonTimer = styled.TouchableOpacity `
+    display: flex;
+    height: 300px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+`
+export const ButtonTimer2 = styled.TouchableOpacity `
+    display: flex;
+    height: 300px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+`
+
+export const ContainerOptionsTimer = styled.View `
+    display: flex;
+    height: 58px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    flex-direction: row;
+`
+export const ButtonOptions = styled.TouchableOpacity `
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+`
+
+
+
+
+
+
+
+

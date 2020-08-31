@@ -66,5 +66,12 @@ export default function PlayersState() {
         }
       }])
     const timers = [1,3,5,10,15]
-      return {stateGlobal, timers}
+
+    const [chosenTimer, setChosenTimer] = useState(0)
+    
+    const selectedTimer = (timer) => {
+      setChosenTimer(timer)
+    }
+      return {stateGlobal, timers, selectedTimer, chosenTimer}
+
 }

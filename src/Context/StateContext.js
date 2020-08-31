@@ -5,9 +5,9 @@ import PlayersState from './hooks/State'
 
 
 function StateProvider ({children}) {
-        const {stateGlobal,timers} = PlayersState()
+        const {stateGlobal,timers, selectedTimer, chosenTimer} = PlayersState()
     return (
-        <Context.Provider value={{stateGlobal,timers}}>
+        <Context.Provider value={{stateGlobal,timers, selectedTimer, chosenTimer}}>
             {children}
         </Context.Provider>
     )
