@@ -23,7 +23,10 @@ export default function App() {
           }
 
         }}/>
-        <Stack.Screen name="Timer" component={Timer} />
+        <Stack.Screen name="Timer" component={Timer} options={{
+          headerShown: false,
+          
+        }} />
       </Stack.Navigator>
     </NavigationContainer>
     </StateProvider>

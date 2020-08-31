@@ -150,19 +150,40 @@ export const ButtonStartGame = styled.TouchableOpacity `
 `
 export const ButtonTimer = styled.TouchableOpacity `
     display: flex;
-    height: 300px;
+    height: 230px;
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: ${props => {
+        if(props.backgroundcolor === null) {
+            return "grey"
+        } else {
+            if(props.backgroundcolor === true) {
+                return "#CD3700"
+            } else {
+                return "grey"
+            }
+        }
+    }};
 `
 export const ButtonTimer2 = styled.TouchableOpacity `
     display: flex;
-    height: 300px;
+    height: 230px;
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: ${props => {
+        if(props.backgroundcolor === null) {
+            return "grey"
+        } else {
+            if(props.backgroundcolor === true) {
+                return "grey"
+            } else {
+                return "#CD3700"
+            }
+        }
+    }};
+    margin-top: 10px;
 `
 
 export const ContainerOptionsTimer = styled.View `
@@ -171,8 +192,9 @@ export const ContainerOptionsTimer = styled.View `
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: grey;
+    background-color: black;
     flex-direction: row;
+    margin-top: 10px;
 `
 export const ButtonOptions = styled.TouchableOpacity `
     height: 40px;
@@ -183,6 +205,19 @@ export const ButtonOptions = styled.TouchableOpacity `
     align-items: center;
     margin: 20px;
 `
+export const ContainerButtonTimers = styled.View `
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0px;
+    background-color: black;
+
+`
+
+
+
 
 
 

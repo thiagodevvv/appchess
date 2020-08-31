@@ -1,13 +1,27 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { Context } from '../Context/StateContext'
-import { ButtonTimer, ButtonTimer2, ContainerOptionsTimer, ButtonOptions } from './style/style'
-import {View, Text, Button} from 'react-native'
+import { ButtonTimer, ButtonTimer2, ContainerOptionsTimer, ButtonOptions, ContainerButtonTimers } from './style/style'
+import { Text } from 'react-native'
 import {AntDesign } from '@expo/vector-icons'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { StatusBar } from 'expo-status-bar'
+import { Audio } from 'expo-av'
+
+const soundObject = new Audio.Sound();
 
 
-function Timer () {
+function Timer ({navigation}) {
 
+    useEffect(() =>  {
+        (async () => {
+            try {
+                await clicktimer.loadAsync(require('./buttonsong.mp3'));
+                console.log('carregou o som')
+              } catch (error) {
+                // An error occurred!
+              }
+        })()
+    }, [Timer])
     const { chosenTimer } = useContext(Context)
     const [seconds, setSeconds] = useState(60)
     const [minutes, setMinutes] = useState(chosenTimer)
@@ -17,6 +31,8 @@ function Timer () {
     const [funcInterval2, setFuncInterval2] = useState(null)
     const [disableButton, setDisableButton] = useState(false)
     const [disableButton2, setDisableButton2] = useState(false)
+    const [color, setColor] = useState(null)
+    const [clicktimer, setClicktimer] = useState(soundObject)
 
     function ControlTimer () {
         if(seconds === 60) {
@@ -59,8 +75,7 @@ function Timer () {
             return <Text>{seconds2}</Text>
         }
     }
-    const startTimer = () => {
-
+    const startTimer = async () => {
        setFuncInterval(
         setInterval(() => {
             if(minutes === 0) {
@@ -95,7 +110,7 @@ function Timer () {
 }
 
     const startTimer2 = () => {
-
+        
     setFuncInterval2(
      setInterval(() => {
          if(minutes2 === 0) {
@@ -128,51 +143,68 @@ function Timer () {
     )
  
 }
-    const PauseTimer = () => {
+    const PauseTimer = async () => {
+        await clicktimer.replayAsync();
         setDisableButton(true)
         setDisableButton2(false)
         clearInterval(funcInterval)
         startTimer2()
+        setColor(false)
 
     }
 
-    const PauseTimer2 = () => {
+    const PauseTimer2 = async () => {
+        await clicktimer.replayAsync();
         setDisableButton(false)
         setDisableButton2(true)
         clearInterval(funcInterval2)
         startTimer()
+        setColor(true)
     }
 
-
     return (
-        <View style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-            <ButtonTimer disabled={disableButton} onPress={PauseTimer}>
+        <ContainerButtonTimers>
+            <StatusBar hidden={true}/>
+            <ButtonTimer touchSoundDisabled={true} backgroundcolor={color} disabled={disableButton} onPress={PauseTimer}>
                 <Text style={{fontSize: 80, color: "white", fontFamily: "FontCustom"}}>
                      {minutes}: <ControlTimer/>
                 </Text>
             </ButtonTimer>
                 <ContainerOptionsTimer>
                         <ButtonOptions onPress={() => {
-                            clearInterval(funcInterval && funcInterval2)
+                            clearInterval(funcInterval)
+                            clearInterval(funcInterval2)
+                            setDisableButton(false)
+                            setDisableButton2(false)
+                            setColor(null)
+
                         }}>
                             <AntDesign name="pause" size={40} color="white" /> 
                         </ButtonOptions>
-                        <ButtonOptions>
+                        <ButtonOptions onPress={() => {
+                            clearInterval(funcInterval)
+                            clearInterval(funcInterval2)
+                            setMinutes(chosenTimer)
+                            setSeconds(60)
+                            setMinutes2(chosenTimer)
+                            setSeconds2(60)
+                            setColor(null)
+                        }}>
                             <MaterialCommunityIcons name="restart" size={40} color="white" />
                         </ButtonOptions>
                         <ButtonOptions>
                             <AntDesign name="checkcircle" size={40} color="white" />
                         </ButtonOptions>
-                        <ButtonOptions>
+                        <ButtonOptions onPress={() => navigation.navigate('Home')}>
                             <AntDesign name="home" size={40} color="white" />
                         </ButtonOptions>
                 </ContainerOptionsTimer>
-            <ButtonTimer2 disabled={disableButton2} onPress={PauseTimer2}>
+            <ButtonTimer2 backgroundcolor={color} disabled={disableButton2} onPress={PauseTimer2}>
                 <Text style={{fontSize: 80, color: "white", fontFamily: "FontCustom"}}>
                     {minutes2}: <ControlTimer2/>
                 </Text>
             </ButtonTimer2>
-        </View>
+        </ContainerButtonTimers>
 
 
     )

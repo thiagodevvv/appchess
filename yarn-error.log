@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add expo-font@~8.2.1 @expo-google-fonts/permanentmarker-regular
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add expo-status-bar@^1.0.0
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_211\bin;D:\Git\cmd;D:\AndroidSdk\tools\bin\emulator;D:\AndroidSdk\tools\bin\tools;D:\AndroidSdk\tools\bin\tools\bin;D:\AndroidSdk\tools\bin\platform-tools;C:\AndroidSdk\tools\bin\platform-tools;%ANDROID_HOME\tools\bin\sdkmanager --licenses;C:\Users\Thiago\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Thiago\AppData\Local\Programs\Python\Python37\;C:\Users\Thiago\AppData\Local\Microsoft\WindowsApps;C:\Users\Thiago\AppData\Local\Yarn\bin;D:\Microsoft VS Code\bin;C:\Users\Thiago\AppData\Roaming\npm;D:\AndroidSdk\platform-tools;D:\AndroidSdk\tools\bin\emulator;D:\AndroidSdk\tools\bin\tools;D:\AndroidSdk\tools\bin\tools\bin;D:\AndroidSdk\tools\bin\platform-tools;C:\AndroidSdk\tools\bin\platform-tools;;%ANDROID_HOME\tools\bin\sdkmanager --licenses;
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@expo-google-fonts%2fpermanentmarker-regular: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66056:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140665:22)
-      at Request.emit (events.js:321:20)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141637:10)
-      at Request.emit (events.js:321:20)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141559:12)
-      at Object.onceWrapper (events.js:427:28)
-      at IncomingMessage.emit (events.js:333:22)
-      at endReadableNT (_stream_readable.js:1201:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+  Error: EPERM: operation not permitted, unlink 'D:\chess\chessgame\node_modules\@babel\generator\node_modules\.bin'
 
 npm manifest: 
   {
@@ -45,6 +35,7 @@ npm manifest:
       "expo-font": "~8.2.1",
       "expo-linear-gradient": "~8.2.1",
       "expo-status-bar": "^1.0.2",
+      "moment": "^2.27.0",
       "react": "~16.11.0",
       "react-dom": "~16.11.0",
       "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.1.tar.gz",
